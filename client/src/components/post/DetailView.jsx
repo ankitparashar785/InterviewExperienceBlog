@@ -101,12 +101,12 @@ const DetailView=()=>{
      const updateLike=async()=>{
         //console.log(liked)
         
-         setLike(like+1)
+         //setLike(like+1)
          
          if(liked)
          {
             post.likes++;
-            await updatePost(param.id,post)
+            //await updatePost(param.id,post)
             setLiked(!liked)
          }
         
@@ -118,8 +118,7 @@ const DetailView=()=>{
         History.push('/')
     }
     const classes=useStyles();
-    const url='https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'
-    
+    const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';    
     if(!currentUser)
     return null;
    return(
@@ -146,7 +145,7 @@ const DetailView=()=>{
               <Grid className={classes.inner1}>
                { post.username!=currentUser.email && <Grid className={classes.inner2}>
                  <ArrowDropUp className={classes.arrow} onClick={updateLike}></ArrowDropUp>
-                    <Typography className={classes.arrowtypo} onClick={updateLike}>{post.likes}</Typography>
+                    <Typography className={classes.arrowtypo} onClick={updateLike}>{0}</Typography>
                   <ArrowDropDown className={classes.arrow}></ArrowDropDown>
                 </Grid>
                }

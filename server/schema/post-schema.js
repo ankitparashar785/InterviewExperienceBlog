@@ -13,7 +13,8 @@ const postsSchema=mongoose.Schema({
         required:true
     },
     picture:{
-        type:String
+        type:String,
+        required:false
     },
     username:{
         type:String,

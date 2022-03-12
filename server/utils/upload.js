@@ -1,7 +1,19 @@
+
 import { GridFsStorage } from 'multer-gridfs-storage'
 import multer from 'multer'
+
+/*var storage =multer.diskStorage({
+    destination:function(req,file,callback){
+        callback(null,'uploads');
+    },
+    filename:function(req,filw,callback){
+        var txt=file.originalname.substr(file.originalname.lastIndexOf());
+        callback(null,file.filename+'-'+Date.now()+ext);
+    }
+}) */
+  
  const storage= new GridFsStorage({
-    url:'mongodb://localhost:27017/image-upload',
+    url :'mongodb+srv://Ankit:Ankit@123@cluster0.d9iea.mongodb.net/blogdata?retryWrites=true&w=majority',
     options:{
         useNewUrlParser:true,useUnifiedTopology:true
     },

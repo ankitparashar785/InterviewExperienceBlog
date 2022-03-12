@@ -4,24 +4,37 @@ import AuthContextProvider from '../context/AuthContext';
 import { useAuth } from '../context/AuthContext';
 import { useState } from 'react';
 import { SearchOutlined } from '@material-ui/icons';
+import MenuBar from './MenuBar'
 const useStyles=makeStyles({
    component:{
-       backgroundColor:'aqua',
-       color:'black'
+       backgroundColor:'#00ADF2',
+       color:'white',
+       marginBottom:'10px',
+       height:'70px',
+    
    },
    link:{
       textDecoration:'none',
-      color:'inherit'
+      color:'inherit',
+      
    },
    container:{
     justifyContent:'center',
     '& > *':{
           padding:20
-    }
+    },
+
    },
    textfield:
    {
        width:300
+   },
+   menu:{
+       background:'red'
+   },
+   typo:{
+       fontWeight:'bold',
+       fontSize:'20px'
    }
 })
 const Header=()=>{
@@ -43,40 +56,18 @@ const Header=()=>{
    // console.log(isSuccess)
      return(
          <AppBar className={classes.component}>
-        
+         
             <Toolbar className={classes.container}>
-              {currentUser && < Link to={'/'} className={classes.link}><Typography>Home</Typography></Link>}
+              {currentUser && < Link to={'/'} className={classes.link}><Typography className={classes.typo}>Home</Typography></Link>}
                 
               {!currentUser&& <Link exact to={'/login'} className={classes.link}><Typography>Login</Typography></Link>}
                 {!currentUser && <Link exact to={'/register'} className={classes.link}><Typography>Register</Typography></Link>}
-               <Typography>{ currentUser && currentUser.email}</Typography>
-        
-                <Link exact to={'/login'} className={classes.link}
-                 onClick={(e)=>{
-                     e.preventDefault();
-                     localStorage.removeItem('email')
-                     logout();
-                     History.push('/login')
-                 }}
+            <Link exact to={'/register'} className={classes.link}><Typography className={classes.typo}>About</Typography></Link>
+               
+               
+              
+                <MenuBar user={currentUser.email} className={classes.menu}/>
                 
-                >
-                   <Typography>Logout</Typography>
-                </Link>
-                
-                <TextField
-                
-                className={classes.textfield}
-                id="standard-bare"
-                variant="outlined"
-                placeholder="Search article by author name"
-                InputProps={{
-                  endAdornment: (
-                    <IconButton>
-                      <SearchOutlined />
-                    </IconButton>
-                  ),
-                }}
-              />
             </Toolbar>
            
          </AppBar>

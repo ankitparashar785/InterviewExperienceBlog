@@ -26,7 +26,7 @@ const Categories=()=>{
     const {currentUser}=useAuth();
     return (
         <>
-             {<Link to='/create' className={classes.link}><Button variant='contained' className={classes.create} >CREATE  BLOG</Button></Link>}
+             {<Link to='/create' className={classes.link}><Button variant='contained' className={classes.create} >Write   interview   Experience</Button></Link>}
               <Table className={classes.table}>
                   <TableHead>
                       <TableRow>

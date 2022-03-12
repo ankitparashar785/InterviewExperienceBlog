@@ -54,7 +54,7 @@ const CreateView=()=>{
     const initialValues={
         title:'',
         description:'',
-        pictures:'',
+        picture:'',
         username:userdetail,
         categories:'',
         createDate:new Date(),
@@ -67,20 +67,24 @@ const CreateView=()=>{
     const[comapany,setCompany]=useState('')
     const History=useHistory();
    // console.log(post.pictures)
-    const url = post.pictures || 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'
+   const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
     useEffect(()=>{
        const getImage=async()=>{
              if(file)
              {
+                console.log("yes file")
                  const data=new FormData();
                  data.append("name",file.name);
                  data.append("file",file);
+                 //console.log(data)
+                 const imag = await uploadFile(data);
+                  //console.log(imag.data)
+                  post.picture = imag.data;
+                  setImage(imag.data);
                  
-                  //  const imag = await uploadFile(data);
-                  //  console.log(imag.data)
-                  //  setImage(imag.data);
                  
-                 
+             }else{
+                //console.log("NO file")
              }
        }
        getImage();
@@ -88,7 +92,7 @@ const CreateView=()=>{
     const handleChange=(e)=>{
         setPost({
             ...post,
-            [e.target.name]:e.target.value
+            [e.target.name]:e.target.value,
         })
     }
    // console.log(file)
@@ -121,7 +125,7 @@ const CreateView=()=>{
                 <input 
                  type='file'
                  id='fileInput'
-                 style={{ display: "none" }}
+                 style={{display:'none'}}
                  onChange={(e)=>setFile(e.target.files[0])}
                 />
             

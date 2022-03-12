@@ -52,6 +52,7 @@ export const uploadFile=async(data)=>{
   }
 }
 
+
 export const newComment = async (comment) => {
     try {
         return await axios.post(`${url}/comment/new/`, comment);
